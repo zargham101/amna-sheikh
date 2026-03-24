@@ -117,16 +117,20 @@ const Navbar = () => {
               </button>
             </div>
 
-            <div className="flex flex-col gap-8 items-center mb-12">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-4xl text-white hover:text-accent-primary transition-colors"
-                >
-                  {link.name}
-                </a>
+            <div className="flex flex-col w-full mb-12">
+              {navLinks.map((link, index) => (
+                <div key={link.name} className="w-full flex flex-col items-center">
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-display text-4xl text-white hover:text-accent-primary transition-colors py-6 w-full text-center"
+                  >
+                    {link.name}
+                  </a>
+                  {index < navLinks.length - 1 && (
+                    <div className="h-[1px] w-full bg-white/10" />
+                  )}
+                </div>
               ))}
             </div>
 

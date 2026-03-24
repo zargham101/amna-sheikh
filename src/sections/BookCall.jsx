@@ -35,16 +35,28 @@ const BookCall = () => {
     if (!validateForm()) return;
 
     const message = `
-🎬 *New Project Inquiry*
+NEW PROJECT INQUIRY
 
-👤 *Name:* ${formData.name}
-📧 *Email:* ${formData.email}
-📱 *WhatsApp:* ${formData.whatsapp}
-🎯 *Project Type:* ${formData.projectType}
-📅 *Preferred Date:* ${formData.date}
+----------------------------------------
+CLIENT INFORMATION
+----------------------------------------
+Name: ${formData.name}
+Email: ${formData.email}
+WhatsApp: ${formData.whatsapp || 'Not provided'}
 
-💬 *Message:*
+----------------------------------------
+PROJECT DETAILS
+----------------------------------------
+Project Type: ${formData.projectType}
+Preferred Date: ${formData.date || 'TBD'}
+
+----------------------------------------
+MESSAGE
+----------------------------------------
 ${formData.message}
+
+----------------------------------------
+Sent via Portfolio Website
     `.trim();
 
     const encodedMessage = encodeURIComponent(message);
@@ -97,55 +109,55 @@ ${formData.message}
             className="bg-background-primary p-8 md:p-12 rounded-[2.5rem] border border-border shadow-2xl relative"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-accent-primary/5 rounded-full blur-[60px] pointer-events-none" />
-            
+
             <form className="relative z-10">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <div>
-                    <label className={labelStyles}>Full Name *</label>
-                    <input name="name" type="text" placeholder="John Doe" value={formData.name} onChange={handleChange} className={inputStyles} required />
-                  </div>
-                  <div>
-                    <label className={labelStyles}>Email Address *</label>
-                    <input name="email" type="email" placeholder="john@example.com" value={formData.email} onChange={handleChange} className={inputStyles} required />
-                  </div>
-               </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                <div>
+                  <label className={labelStyles}>Full Name *</label>
+                  <input name="name" type="text" placeholder="John Doe" value={formData.name} onChange={handleChange} className={inputStyles} required />
+                </div>
+                <div>
+                  <label className={labelStyles}>Email Address *</label>
+                  <input name="email" type="email" placeholder="john@example.com" value={formData.email} onChange={handleChange} className={inputStyles} required />
+                </div>
+              </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <div>
-                    <label className={labelStyles}>WhatsApp (Optional)</label>
-                    <input name="whatsapp" type="tel" placeholder="+92 XXX XXXXXXX" value={formData.whatsapp} onChange={handleChange} className={inputStyles} />
-                  </div>
-                  <div>
-                    <label className={labelStyles}>Project Type</label>
-                    <select name="projectType" value={formData.projectType} onChange={handleChange} className={inputStyles}>
-                      <option>YouTube Video</option>
-                      <option>Instagram Reels</option>
-                      <option>TikTok Content</option>
-                      <option>Brand Video</option>
-                      <option>Full Package</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-               </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                <div>
+                  <label className={labelStyles}>WhatsApp (Optional)</label>
+                  <input name="whatsapp" type="tel" placeholder="+92 XXX XXXXXXX" value={formData.whatsapp} onChange={handleChange} className={inputStyles} />
+                </div>
+                <div>
+                  <label className={labelStyles}>Project Type</label>
+                  <select name="projectType" value={formData.projectType} onChange={handleChange} className={inputStyles}>
+                    <option>YouTube Video</option>
+                    <option>Instagram Reels</option>
+                    <option>TikTok Content</option>
+                    <option>Brand Video</option>
+                    <option>Full Package</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
 
-               <div>
-                 <label className={labelStyles}>Preferred Date</label>
-                 <input name="date" type="date" value={formData.date} onChange={handleChange} className={inputStyles} />
-               </div>
+              <div>
+                <label className={labelStyles}>Preferred Date</label>
+                <input name="date" type="date" value={formData.date} onChange={handleChange} className={inputStyles} />
+              </div>
 
-               <div>
-                 <label className={labelStyles}>Your Message *</label>
-                 <textarea name="message" rows="4" placeholder="Briefly describe your vision..." value={formData.message} onChange={handleChange} className={inputStyles} required />
-               </div>
+              <div>
+                <label className={labelStyles}>Your Message *</label>
+                <textarea name="message" rows="4" placeholder="Briefly describe your vision..." value={formData.message} onChange={handleChange} className={inputStyles} required />
+              </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                  <Button variant="primary" onClick={handleWhatsApp} className="py-4 text-sm tracking-widest uppercase font-bold">
-                    <FaWhatsapp size={20} /> Book via WhatsApp
-                  </Button>
-                  <Button variant="outline" onClick={handleEmail} className="py-4 text-sm tracking-widest uppercase font-bold text-text-secondary">
-                    <FaEnvelope size={18} /> Send via Email
-                  </Button>
-               </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <Button variant="primary" onClick={handleWhatsApp} className="py-4 text-sm tracking-widest uppercase font-bold">
+                  <FaWhatsapp size={20} /> Book via WhatsApp
+                </Button>
+                <Button variant="outline" onClick={handleEmail} className="py-4 text-sm tracking-widest uppercase font-bold text-text-secondary">
+                  <FaEnvelope size={18} /> Send via Email
+                </Button>
+              </div>
             </form>
           </motion.div>
 
@@ -165,29 +177,29 @@ ${formData.message}
                 { icon: FaDollarSign, title: "Custom Pricing", desc: "Transparent pricing packages tailored to your specific needs." },
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-6 group">
-                   <div className="w-14 h-14 rounded-2xl bg-background-tertiary flex items-center justify-center border border-border group-hover:border-accent-primary transition-all duration-300">
-                      <item.icon className="text-accent-primary" size={24} />
-                   </div>
-                   <div>
-                      <h4 className="text-lg text-white mb-1 uppercase tracking-wider">{item.title}</h4>
-                      <p className="text-sm text-text-muted group-hover:text-text-secondary transition-colors leading-relaxed">
-                        {item.desc}
-                      </p>
-                   </div>
+                  <div className="w-14 h-14 rounded-2xl bg-background-tertiary flex items-center justify-center border border-border group-hover:border-accent-primary transition-all duration-300">
+                    <item.icon className="text-accent-primary" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-lg text-white mb-1 uppercase tracking-wider">{item.title}</h4>
+                    <p className="text-sm text-text-muted group-hover:text-text-secondary transition-colors leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
 
             <div className="mt-16 p-8 bg-background-tertiary rounded-3xl border border-border">
-                <p className="text-sm text-accent-primary font-bold tracking-[0.2em] mb-4 uppercase">Direct Contact</p>
-                <div className="flex flex-col gap-4 text-text-secondary font-body">
-                   <p className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                      Typically responds within 24 hours
-                   </p>
-                   <p>Email: <a href={`mailto:${profile.email}`} className="text-white hover:text-accent-primary transition-colors">{profile.email}</a></p>
-                   <p>Location: <span className="text-white">{profile.location}</span></p>
-                </div>
+              <p className="text-sm text-accent-primary font-bold tracking-[0.2em] mb-4 uppercase">Direct Contact</p>
+              <div className="flex flex-col gap-4 text-text-secondary font-body">
+                <p className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  Typically responds within 24 hours
+                </p>
+                <p>Email: <a href={`mailto:${profile.email}`} className="text-white hover:text-accent-primary transition-colors">{profile.email}</a></p>
+                <p>Location: <span className="text-white">{profile.location}</span></p>
+              </div>
             </div>
           </motion.div>
         </div>
